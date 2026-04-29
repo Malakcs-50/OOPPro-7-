@@ -1,12 +1,17 @@
-public abstract class Participant {
+public class Robot {
 
-    protected String name;
-    protected String id;
+    private String model;
+    private double weight;
 
-    public Participant(String name, String id) {
-        this.name = name;
-        this.id = id;
+    public Robot(String model, double weight) {
+        this.model = model;
+        this.weight = weight;
     }
 
-    public abstract void displayRole();
+    @Override
+    public String toString() {
+        return "Robot Model: " + model + " | Weight: " + weight + "kg";
+    }
 }
+    
+
