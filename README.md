@@ -1,14 +1,24 @@
-public class Arena {
 
-    private String arenaName;
-    private String location;
+package module;
 
-    public Arena(String arenaName, String location) {
-        this.arenaName = arenaName;
-        this.location = location;
+public class Score {
+
+    private double points;
+    private int roundNumber;
+
+    public double getPoints(){
+        return points;
     }
 
-    public void displayArena() {
-        System.out.println("Arena: " + arenaName + " | Location: " + location);
+    public void setPoints(double points) {
+        this.points = points;
+    }
+
+    public int getRoundNumber() {
+        return roundNumber;
+    }
+
+    public void setRoundNumber(int roundNumber) {
+        this.roundNumber = roundNumber;
     }
 }
