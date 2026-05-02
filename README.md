@@ -1,16 +1,44 @@
 package module;
 
-public class Judge extends Participant {
-    private String category;
-    private int certificationNumber;
+public class Volunteer extends StaffMember{
 
-    public Judge(int ID, String password, String firstname, String lastname, String email, int age, String category) {
-        super(ID, password, firstname, lastname, email, age);
-        this.category = category;
+    private String assignedTask;
+    private String shiftTime;
+    private String workLocation;
+
+    public Volunteer(int ID, String password, String firstName, String lastName, String email, int age,String assignedTask, String shiftTime) {
+        super(ID, password, firstName, lastName, email, age);
+        this.assignedTask = assignedTask;
+        this.shiftTime = shiftTime;
     }
+
+    public String getAssignedTask() {
+        return assignedTask;
+    }
+
+    public void setAssignedTask(String assignedTask) {
+        this.assignedTask = assignedTask;
+    }
+
+    public String getShiftTime() {
+        return shiftTime;
+    }
+
+    public void setShiftTime(String shiftTime) {
+        this.shiftTime = shiftTime;
+    }
+
+    public String getWorkLocation() {
+        return workLocation;
+    }
+
+    public void setWorkLocation(String workLocation) {
+        this.workLocation = workLocation;
+    }
+
     @Override
     public void Display_Info() {
-        System.out.println("Judge: " + getFirstname() + " - Category: " + category);
-
+        System.out.println("Volunteer: " + getFirstname() + " | Task: " + assignedTask +" - Working at: " + workLocation);
     }
+
 }
