@@ -1,100 +1,105 @@
-public class Last {
+import module.*;
 
-    public static void main(String[] args) {
-      
-        Scanner input = new Scanner(System.in);
+import java.util.ArrayList;
+import java.util.Scanner;
 
-        System.out.println("Welcome to ROBO - Robot Competition System\n");
+        import java.util.*;
 
-        ROBOSystem system = new ROBOSystem();
+        public class Main {
+        public static void main(String[] args) {
 
-        // ===== Arenas =====
-        Arena a1 = new Arena("Room C", "Building A");
-        Arena a2 = new Arena("Room B", "Building B");
-        Arena a3 = new Arena("West Arena", "West Zone");
-        Arena a4 = new Arena("Main Arena", "Hall 1");
+                Scanner input = new Scanner(System.in);
 
-        system.addArena(a1);
-        system.addArena(a2);
-        system.addArena(a3);
-        system.addArena(a4);
+                // --- ARENA SETUP ---
+                System.out.println("=== Competition Initial Setup ===");
+                System.out.print("Enter Arena Name: ");
+                String aName = input.nextLine();
+                System.out.print("Enter Arena City: ");
+                Arena competitionArena = new Arena(aName, input.nextLine());
 
-        // ===== Teams =====
-        Team t1 = new Team("RoboMasters", "T1", "STEM School");
-        t1.addStudent("Ahmed");
-        t1.addStudent("Sara");
+                System.out.print("Enter number of teams: ");
+                int numTeams = input.nextInt();
+                input.nextLine();
 
-        Team t2 = new Team("TechBots", "T2", "Future School");
-        t2.addStudent("Hassan");
-        t2.addStudent("Mona");
+                Team[] teams = new Team[numTeams];
 
-        Team t3 = new Team("AlphaBots", "T3", "Modern School");
-        t3.addStudent("Youssef");
-        t3.addStudent("Nour");
+                for (int i = 0; i < numTeams; i++) {
+                        System.out.println("\n--- Team " + (i + 1) + " ---");
 
-        Team t4 = new Team("MegaBots", "T4", "Elite School");
-        t4.addStudent("Omar");
-        t4.addStudent("Laila");
+                        Team team = new Team();
 
-        // ===== Coaches =====
-        Coach c1 = new Coach("Mr. Ali", "C1", "Programming");
-        Coach c2 = new Coach("Ms. Mona", "C2", "Mechanics");
-        Coach c3 = new Coach("Eng. Samy", "C3", "AI");
-        Coach c4 = new Coach("Dr. Hana", "C4", "Electronics");
+                        System.out.print("Enter team name: ");
+                        team.setTeamName(input.nextLine());
 
-        // ===== Robots =====
-        Robot r1 = new Robot("X-Bot", 15);
-        Robot r2 = new Robot("SpeedBot", 14);
-        Robot r3 = new Robot("AlphaX", 16);
-        Robot r4 = new Robot("MegaZ", 17);
+                        System.out.print("Enter robot name: ");
+                        team.setRobot(input.nextLine());
 
-        // ===== Round =====
-        Round round = new Round(1);
+                        System.out.print("Enter coach name: ");
+                        team.setCoachAssigned(input.nextLine());
 
-        System.out.print("Enter your Team ID (T1 - T4): ");
-        String id = input.nextLine();
+                        System.out.print("Enter number of participants: ");
+                        int numParticipants = input.nextInt();
+                        input.nextLine();
 
-        if (id.startsWith("T")) {
-            switch (id) {
+                        for (int j = 0; j < numParticipants; j++) {
+                                System.out.println("\nParticipant " + (j + 1));
 
-                case "T1":
-                    t1.displayRole();
-                    c1.displayRole();
-                    System.out.println(r1);
-                    a1.displayArena();
-                    round.start(10);
-                    break;
+                                System.out.print("ID: ");
+                                int id = input.nextInt();
+                                input.nextLine();
 
-                case "T2":
-                    t2.displayRole();
-                    c2.displayRole();
-                    System.out.println(r2);
-                    a2.displayArena();
-                    round.start(8);
-                    break;
+                                System.out.print("First Name: ");
+                                String fname = input.nextLine();
 
-                case "T3":
-                    t3.displayRole();
-                    c3.displayRole();
-                    System.out.println(r3);
-                    a3.displayArena();
-                    round.start(12);
-                    break;
+                                System.out.print("Last Name: ");
+                                String lname = input.nextLine();
 
-                case "T4":
-                    t4.displayRole();
-                    c4.displayRole();
-                    System.out.println(r4);
-                    a4.displayArena();
-                    round.start(15);
-                    break;
+                                System.out.print("Email: ");
+                                String email = input.nextLine();
 
-                default:
-                    System.out.println("Team ID not found!");
-            }
-        } else {
-            System.out.println("Invalid ID format.");
+                                System.out.print("Password: ");
+                                String password = input.nextLine();
+
+                                System.out.print("Age: ");
+                                int age = input.nextInt();
+                                input.nextLine();
+
+                                Participant p = new Participant(id, password, fname, lname, email, age);
+                                team.addMember(p);
+                        }
+
+                        teams[i] = team;
+                }
+
+                // 🔹 Simulate Rounds
+                System.out.println("\n===== STARTING COMPETITION =====");
+
+                for (int round = 1; round <= 3; round++) {
+                        System.out.println("\n--- Round " + round + " (5 minutes) ---");
+
+                        for (Team t : teams) {
+                                int score = (int) (Math.random() * 100);
+                                t.setCurrentScore(t.getCurrentScore() + score);
+
+                                System.out.println(t.getTeamName() + " scored: " + score);
+                        }
+
+                        // Simulate 5 minutes (fast version)
+        try {
+        Thread.sleep(2000); // 2 sec instead of 5 min
+        } catch (InterruptedException e) {
+        e.printStackTrace();
         }
-    }
-}
-    
+       }
+
+                        // 🔹 Final Results
+                        System.out.println("\n===== FINAL RESULTS =====");
+
+                        for (Team t : teams) {
+                                System.out.println(t.getTeamName() + " Total Score: " + t.getCurrentScore());
+                                t.displayTeam();
+                        }
+
+                        input.close();
+                }
+        }
