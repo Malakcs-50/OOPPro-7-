@@ -5,8 +5,7 @@ Scanner input = new Scanner(System.in);
 
         System.out.print("Enter number of teams: ");
         int numberOfTeams = input.nextInt();
-        input.nextLine(); // clear buffer
-
+        input.nextLine(); //
         ArrayList<Team> teams = new ArrayList<>();
         ArrayList<Coach> coaches = new ArrayList<>();
 
