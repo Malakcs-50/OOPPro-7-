@@ -1,7 +1,7 @@
 Scanner input = new Scanner(System.in);
 
         System.out.println("Welcome to ROBO Competition System");
-        System.out.println("=================================");
+        System.out.println("**********************************");
 
         System.out.print("Enter number of teams: ");
         int numberOfTeams = input.nextInt();
