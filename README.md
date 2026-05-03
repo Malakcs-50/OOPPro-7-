@@ -1,4 +1,5 @@
- protected String name;
+ public abstract class Participant {
+    protected String name;
     protected String id;
 
     public Participant(String name, String id) {
@@ -8,4 +9,3 @@
 
     public abstract void displayInfo();
 }
-    
