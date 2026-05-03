@@ -8,7 +8,7 @@ public class Robot {
         this.weight = weight;
     }
     
-    public String toString() {
+    public String getrobot() {
         return "Robot Model: " + model + " | Weight: " + weight + "kg";
     }
     
