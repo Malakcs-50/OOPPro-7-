@@ -7,8 +7,7 @@ public class Robot {
         this.model = model;
         this.weight = weight;
     }
-
-    @Override
+    
     public String toString() {
         return "Robot Model: " + model + " | Weight: " + weight + "kg";
     }
