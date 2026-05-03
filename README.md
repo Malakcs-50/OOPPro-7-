@@ -1,14 +1,16 @@
-Scanner input = new Scanner(System.in);
+ Scanner input = new Scanner(System.in);
 
         System.out.println("Welcome to ROBO Competition System");
-        System.out.println("**********************************");
+        System.out.println("=================================");
 
         System.out.print("Enter number of teams: ");
         int numberOfTeams = input.nextInt();
-        input.nextLine(); //
+        input.nextLine(); // clear buffer
+
         ArrayList<Team> teams = new ArrayList<>();
         ArrayList<Coach> coaches = new ArrayList<>();
 
+        // ===== Input Teams Data =====
         for (int i = 0; i < numberOfTeams; i++) {
 
             System.out.println("\n--- Team " + (i + 1) + " ---");
@@ -40,7 +42,12 @@ Scanner input = new Scanner(System.in);
             System.out.print("Enter Second Player ID: ");
             String p2Id = input.nextLine();
 
-            Team team = new Team(teamName, teamId,"School",  p1Name + " (ID: " + p1Id + ")",  p2Name + " (ID: " + p2Id + ")"
+            Team team = new Team(
+                    teamName,
+                    teamId,
+                    "School",
+                    p1Name + " (ID: " + p1Id + ")",
+                    p2Name + " (ID: " + p2Id + ")"
             );
 
             Coach coach = new Coach(coachName, coachId, specialty);
@@ -49,15 +56,19 @@ Scanner input = new Scanner(System.in);
             coaches.add(coach);
         }
 
-        Arena arena = Arena.chooseArena();
+        // ===== Auto Selection =====
+        Arena arena = Arena.chooseArena();     // حسب عدد التيمز
+        Robot robot = Robot.chooseRobot();     // حسب عدد التيمز
         Round round = new Round(1);
 
+        // ===== Output =====
         System.out.println("\n=================================");
         System.out.println("        COMPETITION DETAILS");
         System.out.println("=================================\n");
 
         System.out.println("Number of Teams: " + Team.getTeamCount());
         arena.displayArena();
+        System.out.println(robot);
         round.start(10);
 
         for (int i = 0; i < teams.size(); i++) {
@@ -66,7 +77,7 @@ Scanner input = new Scanner(System.in);
             coaches.get(i).displayInfo();
         }
 
-        System.out.println("\nCompetition Started Successfully ");
+        System.out.println("\nCompetition Started Successfully ✅");
     }
 }
 
