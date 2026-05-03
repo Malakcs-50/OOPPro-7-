@@ -1,14 +1,16 @@
-public class Coach extends Participant {
+public class Robot {
+  
+    private String model;
+    private double weight;
 
-    private String specialty;
-
-    public Coach(String name, String id, String specialty) {
-        super(name, id);
-        this.specialty = specialty;
+    public Robot(String model, double weight) {
+        this.model = model;
+        this.weight = weight;
     }
 
     @Override
-    public void displayInfo() {
-        System.out.println("Coach: " + name + " | Specialty: " + specialty);
+    public String toString() {
+        return "Robot Model: " + model + " | Weight: " + weight + "kg";
     }
+    
 }
