@@ -1,0 +1,76 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter number of teams: ");
+        int n = input.nextInt();
+        input.nextLine();
+        ArrayList<Team> teams = new ArrayList<>();
+        ArrayList<Coach> coaches = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+
+            System.out.println("\nTeam " + (i + 1));
+
+            System.out.print("Team name: ");
+            String name = input.nextLine();
+
+            System.out.print("Team ID: ");
+            String id = input.nextLine();
+
+            System.out.print("Coach name: ");
+            String cName = input.nextLine();
+
+            System.out.print("Coach ID: ");
+            String cId = input.nextLine();
+
+            System.out.print("Specialty: ");
+            String spec = input.nextLine();
+
+            System.out.print("Enter number of players in this team: ");
+            int p = input.nextInt();
+            input.nextLine();
+
+            ArrayList<String> players = new ArrayList<>();
+
+            for (int j = 0; j < p; j++) {
+
+                System.out.print("Enter Player " + (j + 1) + " Name: ");
+                String pName = input.nextLine();
+
+                System.out.print("Enter Player " + (j + 1) + " ID: ");
+                String pId = input.nextLine();
+
+                players.add(pName + " (ID: " + pId + ")");
+            }
+
+            System.out.print("Enter Robot Name: ");
+            String rName = input.nextLine();
+
+            Robot robot = Robot.chooseRobot(n, rName);
+
+            teams.add(new Team(name, id, players, robot));
+            coaches.add(new Coach(cName, cId, spec));
+        }
+
+        Arena arena = Arena.chooseArena();
+
+        System.out.println("\n=== COMPETITION START ===");
+        arena.displayArena();
+
+        for (int r = 1; r <= 3; r++) {
+            new Round(r).start(teams);
+        }
+
+        Team winner = teams.get(0);
+
+        for (Team t : teams) {
+            if (t.getScore().getPoints() > winner.getScore().getPoints())
+                winner = t;
+        }
+
+        System.out.println("\n🏆 WINNER: " + winner.getName() +
+                " with " + winner.getScore().getPoints() + " points!");
+    }
+}
